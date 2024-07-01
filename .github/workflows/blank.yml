@@ -1,0 +1,36 @@
+ name: Second-Workflow
+
+on:
+  workflow_dispatch:  # Ce workflow est déclenché manuellement depuis l'interface GitHub Actions
+
+env:
+  variable1: ${{ secrets.variable1 }}  # Variable d'environnement récupérée depuis les secrets du repository
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    env:
+      variablejob1: valeurjob1  # Définition d'une variable d'environnement spécifique pour job1
+    steps:
+      - name: Checkout du repository
+        uses: actions/checkout@v4  # Utilisation de l'action pour récupérer le code du repository
+      
+      - name: Exécuter le script pour job1
+        run: |
+          echo "$variablejob1"
+          echo "$variablejob2"
+          echo "$variable1"
+
+  job2:
+    runs-on: ubuntu-latest
+    env:
+      variablejob2: valeurjob2  # Définition d'une variable d'environnement spécifique pour job2
+    steps:
+      - name: Checkout du repository
+        uses: actions/checkout@v4  # Utilisation de l'action pour récupérer le code du repository
+      
+      - name: Exécuter le script pour job2
+        run: |
+          echo "$variablejob1"
+          echo "$variablejob2"
+          echo "$variable1"
